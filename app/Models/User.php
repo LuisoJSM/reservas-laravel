@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'credit',
     ];
 
     /**
@@ -43,6 +44,25 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'credit' => 'int'
         ];
     }
+
+
+    public function bookings()
+    {
+
+        return $this->hasMany(Booking::class);
+
+    }
+
+
+    //Método para comprobar si un usuario tiene créditos
+    public function hasCredits(): bool
+    {
+        return $this->credit > 0;
+    }
+
+
+
 }
