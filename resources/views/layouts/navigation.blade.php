@@ -15,6 +15,18 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('businesses.list')" :active="request()->routeIs('businesses.list')">
+                        {{ __('Negocios') }}
+                    </x-nav-link>
+
+
+                    <x-nav-link :href="route('user.bookings')" :active="request()->routeIs('user.bookings')">
+                        {{ __('Mis reservas') }}
+                    </x-nav-link>
+
+
+
                 </div>
             </div>
 
@@ -24,6 +36,13 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
+
+
+                            <span class="ms-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-1 rounded-full text-xs font-semibold">
+                                Créditos: {{ Auth::user()->credit }}
+                            </span>
+
+
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -69,6 +88,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('businesses.list')" :active="request()->routeIs('businesses.list')">
+                {{ __('Negocios') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.bookings')" :active="request()->routeIs('user.bookings')">
+                {{ __('Mis reservas') }}
             </x-responsive-nav-link>
         </div>
 

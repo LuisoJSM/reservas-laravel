@@ -19,12 +19,14 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Cliente 1',
             'email' => 'cliente1@example.com',
+            'password' => 12345678,
             'credit' => 5,
         ]);
 
         User::factory()->create([
             'name' => 'Cliente 2',
             'email' => 'cliente2@example.com',
+            'password' => 12345678,
             'credit' => 5,
         ]);
 

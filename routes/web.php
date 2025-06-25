@@ -54,4 +54,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
 
+Route::get('/businesses', ListAvailableBusinessesController::class)
+    ->name('businesses.list');
+
 require __DIR__.'/auth.php';
