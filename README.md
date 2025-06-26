@@ -10,14 +10,17 @@ Este proyecto es una aplicación web desarrollada en **Laravel** que permite a n
 - Relación entre negocios, horarios (`schedules`) y reservas (`bookings`)
 - Sistema de créditos para limitar reservas por usuario
 - Comando Artisan para generación automática de slots
+- Autenticación con Laravel Breeze
 - Interfaz adaptable a modo claro/oscuro (Tailwind CSS + Blade)
 
 ## 🧱 Tecnologías utilizadas
 
 - Laravel 10+
 - PHP 8.2+
+- Laravel Breeze (Blade + Auth)
 - MySQL
 - Tailwind CSS
+- Vite
 - Blade Components
 - Laravel Artisan Commands
 
@@ -26,16 +29,19 @@ Este proyecto es una aplicación web desarrollada en **Laravel** que permite a n
 1. Clona el repositorio:  
 `git clone https://github.com/tu-usuario/tu-proyecto.git && cd tu-proyecto`
 
-2. Instala las dependencias:  
-`composer install && npm install && npm run dev`
+2. Instala las dependencias de PHP y Node:  
+`composer install && npm install`
 
-3. Copia el archivo de entorno y genera la clave:  
+3. Compila los assets con Vite:  
+`npm run dev`
+
+4. Copia el archivo de entorno y genera la clave:  
 `cp .env.example .env && php artisan key:generate`
 
-4. Configura tu base de datos en el archivo `.env` y luego ejecuta:  
+5. Configura tu base de datos en el archivo `.env` y luego ejecuta:  
 `php artisan migrate --seed`
 
-5. Inicia el servidor:  
+6. Inicia el servidor:  
 `php artisan serve`
 
 ## 🛠️ Comando personalizado
@@ -46,21 +52,47 @@ Este comando genera automáticamente los *slots* futuros de cada negocio según 
 ## 📁 Estructura del proyecto
 
 app/  
+├── Casts/  
+│   └── TimeCast.php  
+├── Console/Commands/  
+│   └── GenerateBusinessSlots.php  
+├── Http/Controllers/  
+│   ├── Auth/  
+│   │   └── ProfileController.php  
+│   └── Booking/  
+│       ├── CancelSlotBookingController.php  
+│       ├── CreateSlotBookingController.php  
+│       ├── ListAvailableBusinessesController.php  
+│       ├── ShowBusinessSlotsController.php  
+│       └── UserBookingsController.php  
 ├── Models/  
-│   ├── Business.php  
-│   ├── Slot.php  
 │   ├── Booking.php  
-│   └── Schedule.php  
-├── Console/Commands/GenerateBusinessSlots.php  
-├── Http/Controllers/...  
-resources/  
-└── views/  
-    ├── bookings/index.blade.php  
-    └── business/slots.blade.php  
+│   ├── Business.php  
+│   ├── Schedule.php  
+│   └── Slot.php  
+
+resources/views/  
+├── auth/  
+├── business/  
+│   ├── list.blade.php  
+│   └── slots.blade.php  
+├── components/  
+├── layouts/  
+├── profile/  
+├── user/  
+│   └── bookings.blade.php  
+├── dashboard.blade.php  
+└── welcome.blade.php  
+
 routes/  
 └── web.php
 
-## 📄 Licencia
+## 🧪 Usuario de prueba
 
-Este proyecto está licenciado bajo la licencia MIT.  
-Desarrollado con ❤️ por [Tu Nombre o Equipo].
+Puedes acceder con el siguiente usuario de prueba:
+
+- Email: `cliente1@example.com`  
+- Contraseña: `123456`
+
+Este usuario se crea automáticamente con el seeder para que puedas probar el sistema de reservas desde el primer momento.
+
