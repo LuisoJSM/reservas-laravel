@@ -7,7 +7,6 @@ use App\Models\Business;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Carbon;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,15 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Directiva para comprobar si la fecha NO es hoy
         Blade::if('dateNotIsToday', function (Carbon $date) {
             return ! $date->isToday();
         });
 
-
-        Blade::if('dateWithinFutureDays', function (Carbon $date, Business $business) {
-            return $date->dayofYear > (now()->dayOfYear + $business->max_future_days);
+        // Directiva para comprobar si la fecha está dentro del límite permitido de días futuros
+        Blade::if('dateWithinMaxFutureDays', function (Carbon $date, Business $business) {
+            return $date->dayOfYear <= (now()->dayOfYear + $business->max_future_days);
         });
-
     }
 
     /**
@@ -31,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Configurar Carbon para usar el idioma español
+        Carbon::setLocale('es');
     }
 }

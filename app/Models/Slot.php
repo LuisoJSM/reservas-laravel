@@ -63,6 +63,11 @@ class Slot extends Model
         return $this->isBooked() && $this->booking->canBeCancelledByUser(auth()->user());
     }
 
+    public function canBeBooked(): bool
+{
+    return !$this->isBooked();
+}
+
 
 
 }
