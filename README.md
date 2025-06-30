@@ -27,7 +27,7 @@ Este proyecto es una aplicación web desarrollada en **Laravel** que permite a n
 ## ⚙️ Instalación
 
 1. Clona el repositorio:  
-`git clone https://github.com/tu-usuario/tu-proyecto.git && cd tu-proyecto`
+`git clone https://github.com/luisojsm/reservas-laravel.git`
 
 2. Instala las dependencias de PHP y Node:  
 `composer install && npm install`
